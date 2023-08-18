@@ -9,6 +9,8 @@ public class DriveSystem extends SubsystemBase {
 
     private final double slowAmmount = 3.2;
 
+    public boolean isSlow = false;
+
     public MotorEx leftBack, leftFront, rightBack, rightFront;
     public DriveSystem(MotorEx leftBack, MotorEx leftfront, MotorEx rightBack, MotorEx rightFront){
         this.leftBack = leftBack;
@@ -22,10 +24,16 @@ public class DriveSystem extends SubsystemBase {
 
     public void driveNormal(double strafe, double forward, double turn) {
         mecanumDrive.driveRobotCentric(strafe, forward, turn);
+        isSlow = false;
     }
 
     public void driveSlow(double strafe, double forward, double turn) {
+        isSlow = true;
         mecanumDrive.driveRobotCentric(strafe/slowAmmount, forward/slowAmmount, turn/slowAmmount);
+    }
+
+    public boolean getIsSlow() {
+        return isSlow;
     }
 
 }
