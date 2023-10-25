@@ -11,14 +11,12 @@ public class BestOpMode extends BaseDriveChassis {
     private DriveCommand driveCommand;
     private DriveSlowCommand driveSlowCommand;
 
-    private telemetryTestCommand telemetryTestCommand;
 
     @Override
     public void initialize() {
         super.initialize();
-        driveCommand = new DriveCommand(driveSystem, gamepadEx1::getLeftX, gamepadEx1::getLeftY, gamepadEx1::getRightX);
-        driveSlowCommand = new DriveSlowCommand(driveSystem, gamepadEx1::getLeftX, gamepadEx1::getLeftY, gamepadEx1::getRightX);
-        telemetryTestCommand = new telemetryTestCommand(telemetry);
+        driveCommand = new DriveCommand(driveSystem, gamepadEx1::getLeftX, gamepadEx1::getLeftY, gamepadEx1::getRightX,gamepadEx1);
+        driveSlowCommand = new DriveSlowCommand(driveSystem, gamepadEx1::getLeftX, gamepadEx1::getLeftY, gamepadEx1::getRightX,gamepadEx1);
         gmp1(GamepadKeys.Button.X).toggleWhenPressed(driveSlowCommand);
         register(driveSystem);
         driveSystem.setDefaultCommand(driveCommand);
